@@ -106,8 +106,8 @@ client.on("message", (message) => {
 	}
 	 
 	if( (message.channel.name == nombreCom) && (message.guild.channels.find('name', nombreLog)!== null) ){ 
-		if(message.content.substr(0,3).toUpperCase() == "CLI"){	message.channel.send(client.reduce(( accumulator, currentValue ) => accumulator.concat(currentValue),[]))};
-		if(message.content.substr(0,3).toUpperCase() == "GIL"){	message.channel.send(client.guilds.reduce(( accumulator, currentValue ) => accumulator.concat(currentValue),[]))};
+		if(message.content.substr(0,3).toUpperCase() == "CLI"){	console.log(client)};
+		if(message.content.substr(0,3).toUpperCase() == "GIL"){	console.log(client.guilds[0], "###############################",client.guilds[1], "###############################",client.guilds[2], "###############################")};
 		if(message.content.substr(0,3).toUpperCase() == "GIS"){	message.channel.send(client.guilds.map(function(item) { return item["name"]; }))};
 		
 	}
