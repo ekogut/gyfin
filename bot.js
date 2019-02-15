@@ -29,7 +29,7 @@ client.on("ready", () => {
 	logMsg = client.channels.find('name', nombreLog); 
 	if(pass !== null && channel  !== null){    	
 		//actualizar(channel, 2);
-		limpiar(channel, 'bot');
+		//limpiar(channel, 'bot');
 		//setInterval (function () {actualizar(channel,0) }, tiempoActualizacion);   
     console.log("Listo!", client.guilds.map(function(item) { return item["name"]; }));
 	} else {
@@ -213,14 +213,14 @@ function actualizar(channel, n){
         limpiar(channel, 'user');
         if(idMain != 0) {
             const embed = generarMensaje();
-            channel.fetchMessage(idMain).then(msg => { msg.edit({embed})});
+            //channel.fetchMessage(idMain).then(msg => { msg.edit({embed})});
         }
         }
 
     if(n == 2 || n == 3){
         limpiar(channel, 'todo');
         const embed = generarMensaje();
-        channel.send({embed}).then(msg => {idMain = msg.id}).catch("fallo 2"); 
+        //channel.send({embed}).then(msg => {idMain = msg.id}).catch("fallo 2"); 
 	    
     }
 }
