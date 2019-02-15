@@ -29,7 +29,7 @@ client.on("ready", () => {
 	logMsg = client.channels.find('name', nombreLog); 
 	if(pass !== null && channel  !== null){    	
 		//actualizar(channel, 2);
-		limpiar(channel, 'todo');
+		//limpiar(channel, 'todo');
 		//setInterval (function () {actualizar(channel,0) }, tiempoActualizacion);   
     console.log("Listo!", client.guilds.map(function(item) { return item["name"]; }));
 	} else {
