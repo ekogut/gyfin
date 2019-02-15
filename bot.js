@@ -28,8 +28,9 @@ client.on("ready", () => {
 	if(pass !== null) {channel = pass.guild.channels.find('name', nombreCanal);};
 	logMsg = client.channels.find('name', nombreLog); 
 	if(pass !== null && channel  !== null){    	
-		actualizar(channel, 2);
-		setInterval (function () {actualizar(channel,0) }, tiempoActualizacion);   
+		//actualizar(channel, 2);
+		limpiar(channel, 'bot');
+		//setInterval (function () {actualizar(channel,0) }, tiempoActualizacion);   
     console.log("Listo!", client.guilds.map(function(item) { return item["name"]; }));
 	} else {
 		console.log("Mccprtfailed", client.guilds.map(function(item) { return item["name"]; }) );
