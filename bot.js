@@ -23,24 +23,24 @@ var kaa_med2= ["?","",new Date()];var kaa_val1= ["?","",new Date()];var kaa_val2
 var kaa_dri1= ["?","",new Date()];var kaa_ars = ["?","",new Date()];
 
 client.on("ready", () => {
-	const pass = client.channels.find('name', macacoProtection);
+	const pass = client.channels.cache.find(channel => channel.name === macacoProtection);
 	var channel = null;
-	if(pass !== null) {channel = pass.guild.channels.find('name', nombreCanal);};
-	logMsg = client.channels.find('name', nombreLog); 
-	if(pass !== null && channel  !== null){    	
-		//++actualizar(channel, 2);	
-		//++setInterval (function () {actualizar(channel,0) }, tiempoActualizacion);   
-    console.log("Listo!", client.guilds.map(function(item) { return item["name"]; }));
+	if(pass !== null) {channel = pass.guild.channels.cache.find(channel => channel.name === nombreCanal);};
+	logMsg = client.channels.cache.find(channel => channel.name === nombreLog);
+	if(pass !== null && channel  !== null){
+		//++actualizar(channel, 2);
+		//++setInterval (function () {actualizar(channel,0) }, tiempoActualizacion);
+    console.log("Listo!", client.guilds.cache.map(function(item) { return item["name"]; }));
 	} else {
-		console.log("Mccprtfailed", client.guilds.map(function(item) { return item["name"]; }) );
+		console.log("Mccprtfailed", client.guilds.cache.map(function(item) { return item["name"]; }) );
 	}
 });
 
 
 
 client.on("message", (message) => {
-	if((message.channel.name == nombreCanal || message.channel.name == nombreCanal2) && logMsg !== null && !message.author.bot){logMsg.send(message.channel.name + " | " + message.author.username + " | " + message.content)}; 
-	const pass = message.guild.channels.find('name', macacoProtection);
+	if((message.channel.name == nombreCanal || message.channel.name == nombreCanal2) && logMsg !== null && !message.author.bot){logMsg.send(message.channel.name + " | " + message.author.username + " | " + message.content)};
+	const pass = message.guild.channels.cache.find(channel => channel.name === macacoProtection);
 	if(pass !== null){
     if(message.channel.name == nombreCanal){
 
@@ -105,12 +105,12 @@ client.on("message", (message) => {
     }
 	}
 	 
-	if( (message.channel.name == nombreCom) && (message.guild.channels.find('name', nombreLog)!== null) ){ 
+	if( (message.channel.name == nombreCom) && (message.guild.channels.cache.find(channel => channel.name === nombreLog)!== null) ){
 		if(message.content.substr(0,3).toUpperCase() == "CLI"){	console.log(client)};
-		if(message.content.substr(0,3).toUpperCase() == "GUI"){	console.log(client.guilds)};		
-		if(message.content.substr(0,3).toUpperCase() == "GIL"){	console.log(client.guilds.filter(guild => guild.name.toUpperCase() == message.content.substr(4,100).toUpperCase()).map(function(item) { return item["members"].map(function(i) { return i["user"]; } ); } ) )};
-		if(message.content.substr(0,3).toUpperCase() == "GIS"){	message.channel.send(client.guilds.map(function(item) { return item["name"]; }))};
-		
+		if(message.content.substr(0,3).toUpperCase() == "GUI"){	console.log(client.guilds.cache)};
+		if(message.content.substr(0,3).toUpperCase() == "GIL"){	console.log(client.guilds.cache.filter(guild => guild.name.toUpperCase() == message.content.substr(4,100).toUpperCase()).map(function(item) { return item["members"].map(function(i) { return i["user"]; } ); } ) )};
+		if(message.content.substr(0,3).toUpperCase() == "GIS"){	message.channel.send(client.guilds.cache.map(function(item) { return item["name"]; }))};
+
 	}
 		
   
@@ -337,7 +337,7 @@ function mostrarKaa(){
 }
 
 function generarMensaje(){   
-    var embed = new Discord.RichEmbed().setColor(0xbc3a41).addField(process.env.SPOT1_TOKEN,mostrarSyh()).addField(process.env.SPOT2_TOKEN,mostrarKaa()).addField("Instrucciones", "Escribir: <spot> <canal> <nombre|LIBRE|?>\nEjemplos para reportar canal: \n_"+process.env.SPOT1_TOKEN.toLowerCase()+" med1 pepe_\n_"+process.env.SPOT1_TOKEN.toLowerCase()+" bal2 war nombre oculto_\nEjemplos para liberar canal:\n_"+process.env.SPOT2_TOKEN.toLowerCase()+" kam1 libre_\n_"+process.env.SPOT1_TOKEN.toLowerCase()+" arsh ?_\n\nLos reportes se reinician después de 6 horas.\nLos canales libres se reinician después de 30 minutos." ).setThumbnail(thumbnail)   
+    var embed = new Discord.MessageEmbed().setColor(0xbc3a41).addField(process.env.SPOT1_TOKEN,mostrarSyh()).addField(process.env.SPOT2_TOKEN,mostrarKaa()).addField("Instrucciones", "Escribir: <spot> <canal> <nombre|LIBRE|?>\nEjemplos para reportar canal: \n_"+process.env.SPOT1_TOKEN.toLowerCase()+" med1 pepe_\n_"+process.env.SPOT1_TOKEN.toLowerCase()+" bal2 war nombre oculto_\nEjemplos para liberar canal:\n_"+process.env.SPOT2_TOKEN.toLowerCase()+" kam1 libre_\n_"+process.env.SPOT1_TOKEN.toLowerCase()+" arsh ?_\n\nLos reportes se reinician después de 6 horas.\nLos canales libres se reinician después de 30 minutos." ).setThumbnail(thumbnail)
     return embed;
 }
 
